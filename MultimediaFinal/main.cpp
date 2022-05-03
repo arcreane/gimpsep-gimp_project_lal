@@ -1,0 +1,151 @@
+#include <opencv2/opencv.hpp>
+#include <opencv2/core.hpp>
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/stitching.hpp"
+#include <stdio.h>
+#include "lighten.h"
+#include "darken.h"
+#include "panorama.h"
+
+using namespace std;
+using namespace cv;
+
+int save(Mat image) {
+	char save;
+	String filename;
+	cout << "Would you like to save your image? Type y for yes or n for no" << endl;
+	cin >> save;
+	if (save == 'y') {
+		cout << "What would you like your filename to be? (enter without extension, as all will be saved as jpg)" << endl;
+		cin >> filename;
+		imwrite(filename+".jpg", image);
+	}
+	return 0;
+}
+
+void lighten() {
+	String filename;
+	int factor;
+	cout << "Please type the filename/filepath of the file you want to lighten." << endl;
+	cin >> filename;
+	cout << "Please type the factor in which you would like to increase the brightness of the image, ranging from 0 to 255" << endl;
+	cin >> factor;
+	Mat srcImage = cv::imread(filename);
+	Mat brightImage;
+	srcImage.copyTo(brightImage);
+	namedWindow("Original Image");
+	namedWindow("Bright Image");
+
+	makeBrightness(brightImage, factor);
+
+	imshow("Original Image", srcImage);
+	imshow("Bright Image", brightImage);
+	waitKey(0);
+	save(brightImage);
+}
+
+void darken() {
+	String filename;
+	int factor;
+	cout << "Please type the filename/filepath of the file you want to lighten." << endl;
+	cin >> filename;
+	cout << "Please type the factor in which you would like to increase the brightness of the image, ranging from 0 to 255" << endl;
+	cin >> factor;
+	Mat srcImage = cv::imread(filename);
+	Mat brightImage;
+	srcImage.copyTo(brightImage);
+	namedWindow("Original Image");
+	namedWindow("Bright Image");
+
+	makeDarkness(brightImage, factor);
+
+	imshow("Original Image", srcImage);
+	imshow("Bright Image", brightImage);
+	waitKey(0);
+	save(brightImage);
+}
+
+int pano() {
+	Stitcher::Mode mode = Stitcher::PANORAMA;
+	int numImages;
+	String filename;
+	Mat temp;
+	vector<Mat> matImages;
+	cout << "How many images?\n->";
+	cin >> numImages;
+	cout << "Type image filenames separated by a newline" << endl;
+	for (int i = 0; i < numImages; i++) {
+		cin >> filename;
+		Mat temp = cv::imread(filename);
+		if (temp.empty()) {
+			cout << "Image Unreadable/File Does Not Exist" << endl;
+			return -1;
+		}
+		matImages.push_back(temp);
+	}
+
+	Mat result = panorama(matImages, mode);
+
+	if (result.empty()) {
+		cout << "Unknown Error, Empty Final Image" << endl;
+		return -1;
+	}
+
+	imshow("Result", result);
+	waitKey(0);
+	save(result);
+}
+
+int main() {
+	int selection = -1;
+	cout << "Welcome to the Image Editor\nWhat would you like to do today?\n";
+	cout << "Select an option below by typing the number corresponding to that option." << endl;
+	cout << "1. Dilation\n2. Erosion\n3. Resizing\n4. Lighten\n5. Darken\n6. Panorama\n7. Canny Edge Detection" << endl;
+	
+	cin >> selection;
+
+	if (!(selection > 0 && selection <= 7)) {
+		cout << "You have typed something outside of range, please try again.";
+		return -1;
+	}
+
+	switch (selection) {
+	case 1:
+		cout << "You have selected Dilation." << endl;
+		//dilation();
+		//save();
+		break;
+	case 2:
+		cout << "You have selected Erosion." << endl;
+		//erosion();
+		//save();
+		break;
+	case 3:
+		cout << "You have selected Resizing." << endl;
+		//resizing();
+		//save();
+		break;
+	case 4:
+		cout << "You have selected Lighten." << endl;
+		lighten();
+		break;
+	case 5:
+		cout << "You have selected Darken." << endl;
+		darken();
+		break;
+	case 6:
+		cout << "You have selected Panorama." << endl;
+		pano();
+		break;
+	case 7:
+		cout << "You have selected Canny Edge Detection." << endl;
+		//cannyedge();
+		break;
+	default:
+		break;
+	}
+
+	return 0;
+}
+
