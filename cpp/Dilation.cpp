@@ -2,38 +2,21 @@
 #include "opencv2/highgui.hpp"
 #include "opencv2/opencv.hpp"
 #include <iostream>
-#include "Dilation.h" 
+#include "../h/Dilation.h" 
 
 using namespace cv;
 using namespace std;
 
-
-
-/* dilate = opération consiste à convoluer une image A avec un certain noyau ( B), */
-/* il s(agit du noyau qui est une matrice 3*3 par defaut, we can choose the shape 
-il existe different forme du noyau tq un rectangle, une ellipse ... 
-element = noyaux auquel l'image va etre convoluer
-il suffit de spécifier la taille de notre noyau et le point d'ancrage. S'il n'est pas spécifié, il est supposé être au centre.
-*/ 
-
-// des des 2 fonction interieur 
-/* pour la dilattion, il faut faire grossir les regiosn claire de l'image , La zone claire de la lettre se dilate autour des régions noires du fond.
-pour cela on : 
-- balaye le noyau sur l'image 
-- calcule la valeur du pixel recouvert par le noyau appele max_elem
-- remplace le pixel de l'image a la position du point d'ancrage par max_elem */
-// in the begining all the variable are worth 0 
-
 int dilation_elem = 0;
 int dilation_size = 0;
 
-void dilation::doit(int max_elem, int max_kernel_size)
+void dilation::doit(int max_elem, int max_kernel_size, String filename)
 {
     //string ad_image;
     //load the image ; 
     //cout << "Please give me the image property " << endl;
     //cin >> ad_image; 
-    im_source = imread("HappyFish.jpg", IMREAD_UNCHANGED);
+    im_source = imread(filename, IMREAD_UNCHANGED);
     // the case if the image is empty 
     if (im_source.empty())
     {

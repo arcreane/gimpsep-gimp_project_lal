@@ -2,7 +2,7 @@
 #include "opencv2/highgui.hpp"
 #include "opencv2/opencv.hpp"
 #include <iostream>
-#include "Erosion.h" 
+#include "../h/Erosion.h" 
 
 using namespace cv;
 using namespace std;
@@ -12,9 +12,9 @@ int erosion_elem = 0;
 int erosion_size = 0;
 
 
-void erosion::doit(int max_elem, int max_kernel_size)
+void erosion::doit(int max_elem, int max_kernel_size, String filename)
 {
-    im_source = imread("HappyFish.jpg", IMREAD_UNCHANGED);
+    im_source = imread(filename, IMREAD_UNCHANGED);
     // the case if the image is empty 
     if (im_source.empty())
     {
