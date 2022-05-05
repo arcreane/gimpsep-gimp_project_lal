@@ -98,6 +98,28 @@ int pano() {
 	return 0;
 }
 
+void Dilation() {
+	String filename;
+	cout << "Please type the filename/filepath of the file you want to lighten." << endl;
+	cin >> filename;
+	int const max_elem = 2;
+	int const max_kernel_size = 21; // taille du noyaux max vaut
+	dilation dilateImg;
+	dilateImg.doit(max_elem, max_kernel_size, filename);
+	waitKey(0);
+}
+
+void Erosion() {
+	String filename;
+	cout << "Please type the filename/filepath of the file you want to lighten." << endl;
+	cin >> filename;
+	int const max_elem = 2;
+	int const max_kernel_size = 21; // taille du noyaux max vaut
+	erosion erodeImg;
+	erodeImg.doit(max_elem, max_kernel_size, filename);
+	waitKey(0);
+}
+
 int main() {
 	int selection = -1;
 	cout << "Welcome to the Image Editor\nWhat would you like to do today?\n";
@@ -114,13 +136,11 @@ int main() {
 	switch (selection) {
 	case 1:
 		cout << "You have selected Dilation." << endl;
-		//dilation();
-		//save();
+		Dilation();
 		break;
 	case 2:
 		cout << "You have selected Erosion." << endl;
-		//erosion();
-		//save();
+		Erosion();
 		break;
 	case 3:
 		cout << "You have selected Resizing." << endl;

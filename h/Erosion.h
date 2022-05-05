@@ -14,7 +14,7 @@ private :
 
 public : 
 	//def des fonction 
-	void doit(int max_elem, int max_kernel_size);
+	void doit(int max_elem, int max_kernel_size, String filename);
 	static void Erosion(int, void*);
 };
 
