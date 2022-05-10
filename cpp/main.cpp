@@ -7,6 +7,8 @@
 #include "../h/lighten.h"
 #include "../h/darken.h"
 #include "../h/panorama.h"
+#include "../h/Dilation.h"
+#include "../h/Erosion.h"
 #include "../h/Resize.h"
 
 using namespace std;
