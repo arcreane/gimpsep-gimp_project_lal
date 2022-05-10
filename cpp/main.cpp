@@ -7,6 +7,7 @@
 #include "../h/lighten.h"
 #include "../h/darken.h"
 #include "../h/panorama.h"
+#include "../h/Resize.h"
 
 using namespace std;
 using namespace cv;
@@ -120,6 +121,29 @@ void Erosion() {
 	waitKey(0);
 }
 
+void resizing() {
+	String filename;
+	double X, Y;
+	Mat resizedImage;
+
+	cout << "Please type the filename/filepath of the file you want to lighten." << endl;
+	cin >> filename;
+	Mat srcImage = cv::imread(filename, IMREAD_UNCHANGED);
+	//srcImage.copyTo(resizedImage);
+
+	cout << "Enter scale for x and y" << endl;
+	cin >> X >> Y;
+
+	resizedImage = resizeMe(filename, X, Y);
+
+	namedWindow("Original Image", WINDOW_AUTOSIZE);
+	imshow("Original Image", srcImage);
+	namedWindow("Resized Image", WINDOW_AUTOSIZE);
+	imshow("Resized Image", resizedImage);
+	waitKey(0);
+	save(srcImage);
+}
+
 int main() {
 	int selection = -1;
 	cout << "Welcome to the Image Editor\nWhat would you like to do today?\n";
@@ -144,8 +168,7 @@ int main() {
 		break;
 	case 3:
 		cout << "You have selected Resizing." << endl;
-		//resizing();
-		//save();
+		resizing();
 		break;
 	case 4:
 		cout << "You have selected Lighten." << endl;
