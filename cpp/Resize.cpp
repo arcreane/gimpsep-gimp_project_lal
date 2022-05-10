@@ -30,5 +30,5 @@ Mat resizeMe(String filename, double scaleX, double scaleY)
 
 	//createTrackbar("Value of vertical axis", windowName3, &scaleY, max_scaleY, doit, this);
 
-	return result;
+	return result; 
 }
