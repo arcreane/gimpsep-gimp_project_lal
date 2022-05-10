@@ -43,7 +43,7 @@ void lighten() {
 	imshow("Bright Image", brightImage);
 	waitKey(0);
 	save(brightImage);
-}
+} 
 
 void darken() {
 	String filename;
