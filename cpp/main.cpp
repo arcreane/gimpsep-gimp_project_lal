@@ -32,7 +32,7 @@ void lighten() {
 	int factor;
 	cout << "Please type the filename/filepath of the file you want to lighten." << endl;
 	cin >> filename;
-	cout << "Please type the factor in which you would like to increase the brightness of the image, ranging from 0 to 255" << endl;
+	cout << "Please type the factor by which you would like to increase the brightness of the image, ranging from 0 to 255" << endl;
 	cin >> factor;
 	Mat srcImage = cv::imread(filename);
 	Mat brightImage;
@@ -53,7 +53,7 @@ void darken() {
 	int factor;
 	cout << "Please type the filename/filepath of the file you want to lighten." << endl;
 	cin >> filename;
-	cout << "Please type the factor in which you would like to increase the brightness of the image, ranging from 0 to 255" << endl;
+	cout << "Please type the factor by which you would like to increase the darkness of the image, ranging from 0 to 255" << endl;
 	cin >> factor;
 	Mat srcImage = cv::imread(filename);
 	Mat brightImage;
@@ -103,7 +103,7 @@ int pano() {
 
 void Dilation() {
 	String filename;
-	cout << "Please type the filename/filepath of the file you want to lighten." << endl;
+	cout << "Please type the filename/filepath of the file you want to dilate." << endl;
 	cin >> filename;
 	int const max_elem = 2;
 	int const max_kernel_size = 21; // taille du noyaux max vaut
@@ -114,7 +114,7 @@ void Dilation() {
 
 void Erosion() {
 	String filename;
-	cout << "Please type the filename/filepath of the file you want to lighten." << endl;
+	cout << "Please type the filename/filepath of the file you want to erode." << endl;
 	cin >> filename;
 	int const max_elem = 2;
 	int const max_kernel_size = 21; // taille du noyaux max vaut
@@ -128,7 +128,7 @@ void resizing() {
 	double X, Y;
 	Mat resizedImage;
 
-	cout << "Please type the filename/filepath of the file you want to lighten." << endl;
+	cout << "Please type the filename/filepath of the file you want to resize." << endl;
 	cin >> filename;
 	Mat srcImage = cv::imread(filename, IMREAD_UNCHANGED);
 	//srcImage.copyTo(resizedImage);
