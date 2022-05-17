@@ -19,21 +19,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="save.cpp" />
+    <ClCompile Include="src\cpp\CannyEdge.cpp" />
     <ClCompile Include="src\cpp\darken.cpp" />
     <ClCompile Include="src\cpp\Dilation.cpp" />
     <ClCompile Include="src\cpp\Erosion.cpp" />
     <ClCompile Include="src\cpp\lighten.cpp" />
     <ClCompile Include="src\cpp\main.cpp" />
+    <ClCompile Include="src\cpp\main2.cpp" />
     <ClCompile Include="src\cpp\panorama.cpp" />
     <ClCompile Include="src\cpp\Resize.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\h\CannyEdge.h" />
     <ClInclude Include="src\h\darken.h" />
     <ClInclude Include="src\h\Dilation.h" />
     <ClInclude Include="src\h\Erosion.h" />
     <ClInclude Include="src\h\lighten.h" />
+    <ClInclude Include="src\h\main2.h" />
     <ClInclude Include="src\h\panorama.h" />
     <ClInclude Include="src\h\Resize.h" />
+    <ClInclude Include="src\h\save.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

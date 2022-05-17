@@ -7,3 +7,6 @@
 
 using namespace cv;
 Mat makeBrightness(Mat src, int factor);
+
+void lighten();
+void lighten(Mat image);

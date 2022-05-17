@@ -1,3 +1,4 @@
+#pragma once
 #include <opencv2/opencv.hpp>
 #include <opencv2/core.hpp>
 #include "opencv2/imgcodecs.hpp"
@@ -10,65 +11,12 @@
 #include "../h/Dilation.h"
 #include "../h/Erosion.h"
 #include "../h/Resize.h"
+#include "main2.h"
+#include "save.h"
 #include "../h/CannyEdge.h"
 
 using namespace std;
-
-
-int save(Mat image) {
-	char save;
-	String filename;
-	cout << "Would you like to save your image? Type y for yes or n for no" << endl;
-	cin >> save;
-	if (save == 'y') {
-		cout << "What would you like your filename to be? (enter without extension, as all will be saved as jpg)" << endl;
-		cin >> filename;
-		imwrite(filename+".jpg", image);
-	}
-	return 0;
-}
-
-void lighten() {
-	String filename;
-	int factor;
-	cout << "Please type the filename/filepath of the file you want to lighten." << endl;
-	cin >> filename;
-	cout << "Please type the factor by which you would like to increase the brightness of the image, ranging from 0 to 255" << endl;
-	cin >> factor;
-	Mat srcImage = cv::imread(filename);
-	Mat brightImage;
-	srcImage.copyTo(brightImage);
-	namedWindow("Original Image");
-	namedWindow("Bright Image");
-
-	makeBrightness(brightImage, factor);
-
-	imshow("Original Image", srcImage);
-	imshow("Bright Image", brightImage);
-	waitKey(0);
-	save(brightImage);
-}
-
-void darken() {
-	String filename;
-	int factor;
-	cout << "Please type the filename/filepath of the file you want to darken." << endl;
-	cin >> filename;
-	cout << "Please type the factor by which you would like to make the image darker, ranging from 0 to 255" << endl;
-	cin >> factor;
-	Mat srcImage = cv::imread(filename);
-	Mat brightImage;
-	srcImage.copyTo(brightImage);
-	namedWindow("Original Image");
-	namedWindow("Bright Image");
-
-	makeDarkness(brightImage, factor);
-
-	imshow("Original Image", srcImage);
-	imshow("Bright Image", brightImage);
-	waitKey(0);
-	save(brightImage);
-}
+Mat i;
 
 int pano() {
 	Stitcher::Mode mode = Stitcher::PANORAMA;
@@ -182,11 +130,10 @@ int main() {
 
 		cin >> selection;
 
-
-		if (!(selection > 0 && selection <= 7)) {
+		if (!(selection > 0 && selection <= 8)) {
 			cout << "You have typed something outside of range, please try again.";
 			return -1;
-		}
+		} 
 
 	switch (selection) {
 	case 1:
@@ -223,4 +170,3 @@ int main() {
 	}
 	return 0;
 }
-

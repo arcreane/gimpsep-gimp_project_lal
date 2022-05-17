@@ -7,3 +7,5 @@
 
 using namespace cv;
 Mat makeDarkness(Mat src, int factor);
+void darken();
+void darken(Mat image);
