@@ -10,6 +10,7 @@
 #include "../h/Dilation.h"
 #include "../h/Erosion.h"
 #include "../h/Resize.h"
+#include "../h/CannyEdge.h"
 
 using namespace std;
 
@@ -147,6 +148,31 @@ void resizing() {
 	save(srcImage);
 }
 
+void CannyEdgeDetection() {
+	String filename;
+	Mat edges;
+	Mat srcImage;
+	int factor;
+
+	cout << "Please type the filename/filepath of the file from which you want the edge detection done." << endl;
+	cin >> filename;
+	cout << "Please enter the detection factor (integer)" << endl;
+	cin >> factor;
+	srcImage = cv::imread(filename, IMREAD_UNCHANGED);
+
+	edges = detectEdges(srcImage,factor);
+		
+	namedWindow("Original Image", WINDOW_AUTOSIZE);
+	imshow("Original Image", srcImage);
+
+	namedWindow("Edge Detection", WINDOW_AUTOSIZE);
+	imshow("Edge Detection", edges);
+
+	waitKey(0);
+
+
+}
+
 int main() {
 	while (true) {
 		int selection = -1;
@@ -156,43 +182,44 @@ int main() {
 
 		cin >> selection;
 
+
 		if (!(selection > 0 && selection <= 7)) {
 			cout << "You have typed something outside of range, please try again.";
 			return -1;
 		}
 
-		switch (selection) {
-		case 1:
-			cout << "You have selected Dilation." << endl;
-			Dilation();
-			break;
-		case 2:
-			cout << "You have selected Erosion." << endl;
-			Erosion();
-			break;
-		case 3:
-			cout << "You have selected Resizing." << endl;
-			resizing();
-			break;
-		case 4:
-			cout << "You have selected Lighten." << endl;
-			lighten();
-			break;
-		case 5:
-			cout << "You have selected Darken." << endl;
-			darken();
-			break;
-		case 6:
-			cout << "You have selected Panorama." << endl;
-			pano();
-			break;
-		case 7:
-			cout << "You have selected Canny Edge Detection." << endl;
-			//cannyedge();
-			break;
-		default:
-			break;
-		}
+	switch (selection) {
+	case 1:
+		cout << "You have selected Dilation." << endl;
+		Dilation();
+		break;
+	case 2:
+		cout << "You have selected Erosion." << endl;
+		Erosion();
+		break;
+	case 3:
+		cout << "You have selected Resizing." << endl;
+		resizing();
+		break;
+	case 4:
+		cout << "You have selected Lighten." << endl;
+		lighten();
+		break;
+	case 5:
+		cout << "You have selected Darken." << endl;
+		darken();
+		break;
+	case 6:
+		cout << "You have selected Panorama." << endl;
+		pano();
+		break;
+	case 7:
+		cout << "You have selected Canny Edge Detection." << endl;
+		CannyEdgeDetection();
+		break;
+	default:
+		break;
+	}
 	}
 	return 0;
 }
