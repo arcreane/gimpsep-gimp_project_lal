@@ -1,6 +1,6 @@
 #pragma once
-#include "../h/darken.h"
-#include "main2.h"
+#include "darken.h"
+#include "secondary.h"
 #include "save.h"
 
 using namespace cv;
@@ -31,49 +31,45 @@ void darken() {
 	Mat brightImage;
 	srcImage.copyTo(brightImage);
 	namedWindow("Original Image");
-	namedWindow("Bright Image");
+	namedWindow("Dark Image");
 
 	makeDarkness(brightImage, factor);
 
 	imshow("Original Image", srcImage);
-	imshow("Bright Image", brightImage);
+	imshow("Dark Image", brightImage);
 	waitKey(0);
+	destroyWindow("Original Image");
 	char option;
 	cout << "Would you like to make another edit to the modified image?  Reply y for yes" << endl;
 	cin >> option;
 	if (option == 'y') {
-		main2(brightImage);
+		secondary(brightImage);
 	}
 	else {
 		save(brightImage);
+		destroyWindow("Dark Image");
 	}
-	
 }
 
 void darken(Mat image) {
-	String filename;
 	int factor;
-	cout << "Please type the filename/filepath of the file you want to darken." << endl;
-	cin >> filename;
 	cout << "Please type the factor by which you would like to make the image darker, ranging from 0 to 255" << endl;
 	cin >> factor;
-	Mat srcImage = image;
-	namedWindow("Original Image");
-	namedWindow("Bright Image");
+
+	namedWindow("Dark Image");
 
 	makeDarkness(image, factor);
 
-	imshow("Original Image", srcImage);
-	imshow("Bright Image", image);
+	imshow("Dark Image", image);
 	waitKey(0);
 	char option;
 	cout << "Would you like to make another edit to the modified image?  Reply y for yes" << endl;
 	cin >> option;
 	if (option == 'y') {
-		main2(image);
+		secondary(image);
 	}
 	else {
 		save(image);
+		// destroyWindow("Dark Image");
 	}
-	
 }

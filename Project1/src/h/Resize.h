@@ -9,7 +9,9 @@ using namespace std;
 
 
 
-Mat resizeMe(String filename, double scaleX, double scaleY);
-
+Mat resizeMe(Mat im_source, double scaleX, double scaleY);
+void resizer();
+void resizer(Mat im_source);
+void resizing();
 
 

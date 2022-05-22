@@ -8,4 +8,4 @@
 
 using namespace cv;
 
-void main2(Mat image);
+int secondary(Mat image);

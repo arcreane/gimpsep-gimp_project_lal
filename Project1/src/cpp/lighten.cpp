@@ -1,6 +1,6 @@
 #include "../h/lighten.h"
 #include "save.h"
-#include "main2.h"
+#include "secondary.h"
 using namespace cv;
 using namespace std;
 
@@ -36,14 +36,16 @@ void lighten() {
 	imshow("Original Image", srcImage);
 	imshow("Bright Image", brightImage);
 	waitKey(0);
+	destroyWindow("Original Image");
 	char option;
 	cout << "Would you like to make another edit to the modified image?  Reply y for yes" << endl;
 	cin >> option;
 	if (option == 'y') {
-		main2(brightImage);
+		secondary(brightImage);
 	}
 	else {
 		save(brightImage);
+		destroyWindow("Bright Image");
 	}
 	
 }
@@ -53,22 +55,23 @@ void lighten(Mat image) {
 	int factor;
 	cout << "Please type the factor by which you would like to increase the brightness of the image, ranging from 0 to 255" << endl;
 	cin >> factor;
-	Mat srcImage = image;
-	namedWindow("Original Image");
+
 	namedWindow("Bright Image");
 
 	makeBrightness(image, factor);
 
-	imshow("Original Image", srcImage);
 	imshow("Bright Image", image);
 	waitKey(0);
+
 	char option;
 	cout << "Would you like to make another edit to the modified image?  Reply y for yes" << endl;
 	cin >> option;
 	if (option == 'y') {
-		main2(image);
-	} else {
+		secondary(image);
+		// waitKey(0);
+	}
+	else {
 		save(image);
 	}
-	
+	// destroyWindow("Bright Image");
 }

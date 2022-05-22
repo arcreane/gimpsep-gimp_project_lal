@@ -9,3 +9,4 @@
 using namespace cv;
 
 Mat panorama(std::vector<Mat> matImages, Stitcher::Mode mode);
+int pano();

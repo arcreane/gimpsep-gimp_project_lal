@@ -1,4 +1,6 @@
 #include "Dilation.h" 
+#include "save.h"
+#include "secondary.h"
 
 using namespace cv;
 using namespace std;
@@ -6,42 +8,58 @@ using namespace std;
 int dilation_elem = 0;
 int dilation_size = 0;
 
-void dilation::doit(int max_elem, int max_kernel_size, String filename)
+void dilation::doit(int max_elem, int max_kernel_size, string filename, string windowname)
 {
-    //string ad_image;
-    //load the image ; 
-    //cout << "Please give me the image property " << endl;
-    //cin >> ad_image; 
     im_source = imread(filename, IMREAD_UNCHANGED);
     // the case if the image is empty 
     if (im_source.empty())
     {
         cout << "Could not open or find the image!\n" << endl;
-        //  cout << "Usage: " << argv[0] << " <Input image>" << endl;
         return;
     }
-
-    string windowName = "Dilation Demo";
-
-    namedWindow(windowName, WINDOW_AUTOSIZE);
-    imshow(windowName, im_source);
-    moveWindow(windowName, 0, 0);
-
+    namedWindow(windowname, WINDOW_AUTOSIZE);
+    imshow(windowname, im_source);
+    moveWindow(windowname, 0, 0);
 
     //use a trackbar to control the size of an image.
     //The first trackbar "Element" returns dilation_elem
-    createTrackbar("Element:\n 0: Rect \n 1: Cross \n 2: Ellipse", windowName,
+    createTrackbar("Element:\n 0: Rect \n 1: Cross \n 2: Ellipse", windowname,
         &dilation_elem, max_elem,
         dilation::Dilation, this);
     // "Kernel size" return dilation_size for the corresponding operation.
-    createTrackbar("Kernel size:\n 2n +1", windowName,
+    createTrackbar("Kernel size:\n 2n +1", windowname,
         &dilation_size, max_kernel_size,
         dilation::Dilation, this);
 
     // Call once dilation and erosion to show the initial image.
     // les zone sombre s'ecralicisse avec la dilatation 
-//  Dilation(0, 0);
+}
 
+void dilation::doit(int max_elem, int max_kernel_size, Mat image, string windowname)
+{
+    im_source = image;
+    // the case if the image is empty 
+    if (im_source.empty())
+    {
+        cout << "Could not open or find the image!\n" << endl;
+        return;
+    }
+    namedWindow(windowname, WINDOW_AUTOSIZE);
+    imshow(windowname, im_source);
+    moveWindow(windowname, 0, 0);
+
+    //use a trackbar to control the size of an image.
+    //The first trackbar "Element" returns dilation_elem
+    createTrackbar("Element:\n 0: Rect \n 1: Cross \n 2: Ellipse", windowname,
+        &dilation_elem, max_elem,
+        dilation::Dilation, this);
+    // "Kernel size" return dilation_size for the corresponding operation.
+    createTrackbar("Kernel size:\n 2n +1", windowname,
+        &dilation_size, max_kernel_size,
+        dilation::Dilation, this);
+
+    // Call once dilation and erosion to show the initial image.
+    // les zone sombre s'ecralicisse avec la dilatation 
 }
 
 
@@ -60,10 +78,39 @@ void dilation::Dilation(int value, void* img)
     {
         dilation_type = MORPH_ELLIPSE;
     }
+
     Mat element = getStructuringElement(dilation_type,
         Size(2 * dilation_size + 1, 2 * dilation_size + 1),
         Point(dilation_size, dilation_size));
     /* utiliation de la fct dilate */
+    
     dilate(src->im_source, src->dilation_dst, element);
     imshow("Dilation Demo", src->dilation_dst);
+}
+
+void Dilate() {
+    string filename;
+    string windowName = "Dilation Demo";
+    cout << "Please type the filename/filepath of the file you want to dilate." << endl;
+    cin >> filename;
+    int const max_elem = 2;
+    int const max_kernel_size = 21; // taille du noyaux max vaut
+    dilation dilateImg;
+    dilateImg.doit(max_elem, max_kernel_size, filename, windowName);
+    waitKey(0);
+
+    anotherEdit(dilateImg.dilation_dst);
+    // destroyWindow("Dilation Demo");
+}
+
+void Dilate(Mat image) {
+    string windowName = "Dilation Demo";
+    int const max_elem = 2;
+    int const max_kernel_size = 21; // taille du noyaux max vaut
+    dilation dilateImg;
+    dilateImg.doit(max_elem, max_kernel_size, image, windowName);
+    waitKey(0);
+
+    anotherEdit(dilateImg.dilation_dst);
+    // destroyWindow("Dilation Demo");
 }

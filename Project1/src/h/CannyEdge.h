@@ -9,3 +9,5 @@
 using namespace cv;
 
 Mat detectEdges(Mat src, const int factor);
+void CannyEdgeDetection();
+void CannyEdgeDetection(Mat image);

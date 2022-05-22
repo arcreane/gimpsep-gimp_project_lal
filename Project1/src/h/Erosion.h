@@ -7,15 +7,21 @@
 using namespace cv;
 
 class erosion {
+	
 private : 
 	// def des variable image
-	Mat erosion_dst;
+	
 	Mat im_source;
 
 public : 
 	//def des fonction 
+	Mat erosion_dst;
 	void doit(int max_elem, int max_kernel_size, String filename);
 	static void Erosion(int, void*);
+	void doit(int max_elem, int max_kernel_size, Mat image);
 };
 
+
+void Erode();
+void Erode(Mat image);
 

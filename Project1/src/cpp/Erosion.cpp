@@ -1,4 +1,5 @@
-#include "../h/Erosion.h" 
+#include "Erosion.h" 
+#include "secondary.h"
 
 using namespace cv;
 using namespace std;
@@ -33,6 +34,30 @@ void erosion::doit(int max_elem, int max_kernel_size, String filename)
         erosion::Erosion, this);
 }
 
+void erosion::doit(int max_elem, int max_kernel_size, Mat image)
+{
+    im_source = image;
+    // the case if the image is empty 
+    if (im_source.empty())
+    {
+        cout << "Could not open or find the image!\n" << endl;
+        return;
+    }
+
+    string windowName2 = "Erosion Demo";
+    namedWindow(windowName2, WINDOW_AUTOSIZE);
+    imshow(windowName2, im_source);
+    moveWindow(windowName2, 0, 0);
+
+    ////The first trackbar "Element" returns erosion_elem
+    //createTrackbar("Element:\n 0: Rect \n 1: Cross \n 2: Ellipse", windowName2,
+    //    &erosion_elem, max_elem,
+    //    erosion::Erosion, this);
+    //// "Kernel size" return erosion_size for the corresponding operation.
+    //createTrackbar("Kernel size:\n 2n +1", windowName2,
+    //    &erosion_size, max_kernel_size,
+    //    erosion::Erosion, this);
+}
 
 void erosion::Erosion(int value, void* img)
 {
@@ -56,5 +81,30 @@ void erosion::Erosion(int value, void* img)
 
     erode(src->im_source, src->erosion_dst, element);
     imshow("Erosion Demo", src->erosion_dst);
+
 }
 
+void Erode() {
+    string filename;
+    cout << "Please type the filename/filepath of the file you want to erode." << endl;
+    cin >> filename;
+    int const max_elem = 2;
+    int const max_kernel_size = 21; // taille du noyaux max vaut
+    erosion erodeImg;
+    erodeImg.doit(max_elem, max_kernel_size, filename);
+    waitKey(0);
+    anotherEdit(erodeImg.erosion_dst);
+    // destroyWindow("Erosion Demo");
+    // saveas(erodeImg.erosion_dst, "temp");
+}
+
+void Erode(Mat image) {
+    int const max_elem = 2;
+    int const max_kernel_size = 21; // taille du noyaux max vaut
+    erosion erodeImg;
+    erodeImg.doit(max_elem, max_kernel_size, image);
+    waitKey(0);
+    anotherEdit(erodeImg.erosion_dst);
+    // destroyWindow("Erosion Demo");
+    // saveas(erodeImg.erosion_dst, "temp");
+}

@@ -1,6 +1,7 @@
 
 #include "save.h"
 #include "opencv2/opencv.hpp"
+#include "secondary.h"
 
 using namespace cv;
 
@@ -17,4 +18,20 @@ int save(cv::Mat& image)
 		imwrite(filename + ".jpg", image);
 	}
 	return 0;
+}
+
+void saveas(cv::Mat& image, std::string name) {
+	imwrite(name + ".jpg", image);
+}
+
+void anotherEdit(cv::Mat& src) {
+	char option;
+	cout << "Would you like to make another edit to the modified image?  Reply y for yes" << endl;
+	cin >> option;
+	if (option == 'y') {
+		secondary(src);
+	}
+	else {
+		save(src);
+	}
 }
