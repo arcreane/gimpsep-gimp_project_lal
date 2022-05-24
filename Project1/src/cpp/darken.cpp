@@ -39,16 +39,17 @@ void darken() {
 	imshow("Dark Image", brightImage);
 	waitKey(0);
 	destroyWindow("Original Image");
-	char option;
-	cout << "Would you like to make another edit to the modified image?  Reply y for yes" << endl;
-	cin >> option;
-	if (option == 'y') {
-		secondary(brightImage);
-	}
-	else {
-		save(brightImage);
-		destroyWindow("Dark Image");
-	}
+	anotherEdit(brightImage);
+	//char option;
+	//cout << "Would you like to make another edit to the modified image?  Reply y for yes" << endl;
+	//cin >> option;
+	//if (option == 'y') {
+	//	secondary(brightImage);
+	//}
+	//else {
+	//	save(brightImage);
+	//	destroyWindow("Dark Image");
+	//}
 }
 
 void darken(Mat image) {
@@ -62,14 +63,15 @@ void darken(Mat image) {
 
 	imshow("Dark Image", image);
 	waitKey(0);
-	char option;
-	cout << "Would you like to make another edit to the modified image?  Reply y for yes" << endl;
-	cin >> option;
-	if (option == 'y') {
-		secondary(image);
-	}
-	else {
-		save(image);
-		// destroyWindow("Dark Image");
-	}
+	anotherEdit(image);
+	//char option;
+	//cout << "Would you like to make another edit to the modified image?  Reply y for yes" << endl;
+	//cin >> option;
+	//if (option == 'y') {
+	//	secondary(image);
+	//}
+	//else {
+	//	save(image);
+	//	// destroyWindow("Dark Image");
+	//}
 }

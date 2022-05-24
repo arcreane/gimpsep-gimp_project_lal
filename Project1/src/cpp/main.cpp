@@ -44,7 +44,7 @@ int main() {
 		break;
 	case 3:
 		cout << "You have selected Resizing." << endl;
-		resizing();
+		resizer();
 		break;
 	case 4:
 		cout << "You have selected Lighten." << endl;

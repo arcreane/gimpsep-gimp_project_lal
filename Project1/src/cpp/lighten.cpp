@@ -37,16 +37,17 @@ void lighten() {
 	imshow("Bright Image", brightImage);
 	waitKey(0);
 	destroyWindow("Original Image");
-	char option;
+	/*char option;
 	cout << "Would you like to make another edit to the modified image?  Reply y for yes" << endl;
-	cin >> option;
-	if (option == 'y') {
-		secondary(brightImage);
-	}
-	else {
-		save(brightImage);
-		destroyWindow("Bright Image");
-	}
+	cin >> option;*/
+	anotherEdit(brightImage);
+	//if (option == 'y') {
+	//	secondary(brightImage);
+	//}
+	//else {
+	//	save(brightImage);
+	//	destroyWindow("Bright Image");
+	//}
 	
 }
 
@@ -63,15 +64,16 @@ void lighten(Mat image) {
 	imshow("Bright Image", image);
 	waitKey(0);
 
-	char option;
+	/*char option;
 	cout << "Would you like to make another edit to the modified image?  Reply y for yes" << endl;
-	cin >> option;
-	if (option == 'y') {
-		secondary(image);
-		// waitKey(0);
-	}
-	else {
-		save(image);
-	}
+	cin >> option;*/
+	anotherEdit(image);
+	//if (option == 'y') {
+	//	secondary(image);
+	//	// waitKey(0);
+	//}
+	//else {
+	//	save(image);
+	//}
 	// destroyWindow("Bright Image");
 }
