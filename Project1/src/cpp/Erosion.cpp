@@ -19,17 +19,18 @@ void erosion::doit(int max_elem, int max_kernel_size, String filename)
         return;
     }
 
-    string windowName2 = "Erosion Demo";
-    namedWindow(windowName2, WINDOW_AUTOSIZE);
-    imshow(windowName2, im_source);
-    moveWindow(windowName2, 0, 0);
+    string windowName = "Erosion Demo";
+    namedWindow(windowName);
+
+    imshow(windowName, im_source);
+    moveWindow(windowName, 0, 0);
 
     //The first trackbar "Element" returns erosion_elem
-    createTrackbar("Element:\n 0: Rect \n 1: Cross \n 2: Ellipse", windowName2,
+    createTrackbar("Element:\n 0: Rect \n 1: Cross \n 2: Ellipse", windowName,
         &erosion_elem, max_elem,
         erosion::Erosion, this);
     // "Kernel size" return erosion_size for the corresponding operation.
-    createTrackbar("Kernel size:\n 2n +1", windowName2,
+    createTrackbar("Kernel size:\n 2n +1", windowName,
         &erosion_size, max_kernel_size,
         erosion::Erosion, this);
 }
@@ -44,19 +45,23 @@ void erosion::doit(int max_elem, int max_kernel_size, Mat image)
         return;
     }
 
-    string windowName2 = "Erosion Demo";
-    namedWindow(windowName2, WINDOW_AUTOSIZE);
-    imshow(windowName2, im_source);
-    moveWindow(windowName2, 0, 0);
+    string windowName = "Erosion Demo";
 
+    namedWindow(windowName, WINDOW_AUTOSIZE);
+
+  
     //The first trackbar "Element" returns erosion_elem
-    createTrackbar("Element:\n 0: Rect \n 1: Cross \n 2: Ellipse", windowName2,
+    createTrackbar("Element:\n 0: Rect \n 1: Cross \n 2: Ellipse", windowName,
         &erosion_elem, max_elem,
         erosion::Erosion, this);
     // "Kernel size" return erosion_size for the corresponding operation.
-    createTrackbar("Kernel size:\n 2n +1", windowName2,
+    createTrackbar("Kernel size:\n 2n +1", windowName,
         &erosion_size, max_kernel_size,
         erosion::Erosion, this);
+
+    imshow(windowName, im_source);
+    moveWindow(windowName, 0, 0);
+
 }
 
 void erosion::Erosion(int value, void* img)

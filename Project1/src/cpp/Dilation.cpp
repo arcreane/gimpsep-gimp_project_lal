@@ -17,7 +17,7 @@ void dilation::doit(int max_elem, int max_kernel_size, string filename, string w
         cout << "Could not open or find the image!\n" << endl;
         return;
     }
-    namedWindow(windowname, WINDOW_AUTOSIZE);
+    namedWindow(windowname, WINDOW_KEEPRATIO);
     imshow(windowname, im_source);
     moveWindow(windowname, 0, 0);
 
@@ -46,7 +46,7 @@ void dilation::doit(int max_elem, int max_kernel_size, Mat image, string windown
         cout << "Could not open or find the image!\n" << endl;
         return;
     }
-    namedWindow(windowname, WINDOW_AUTOSIZE);
+    namedWindow(windowname, WINDOW_KEEPRATIO);
     imshow(windowname, im_source);
     moveWindow(windowname, 0, 0);
 

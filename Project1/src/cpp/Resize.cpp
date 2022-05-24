@@ -43,12 +43,15 @@ void resizer() {
 
 	resizedImage = resizeMe(srcImage, X, Y);
 
-	namedWindow("Original Image", WINDOW_AUTOSIZE);
-	imshow("Original Image", srcImage);
-	namedWindow("Resized Image", WINDOW_AUTOSIZE);
-	imshow("Resized Image", resizedImage);
+	string original = "Original Image";
+	string resized = "Resized Image";
+
+	namedWindow(original, WINDOW_AUTOSIZE);
+	imshow(original, srcImage);
+	namedWindow(resized, WINDOW_AUTOSIZE);
+	imshow(resized, resizedImage);
 	waitKey(0);
-	destroyWindow("Original Image");
+	destroyWindow(original);
 	anotherEdit(resizedImage);
 	// destroyWindow("Resized Image");
 }
@@ -70,11 +73,14 @@ void resizer(Mat im_source) {
 
 	resizedImage = resizeMe(im_source, X, Y);
 
-	namedWindow("Original Image", WINDOW_AUTOSIZE);
-	imshow("Original Image", im_source);
-	namedWindow("Resized Image", WINDOW_AUTOSIZE);
-	imshow("Resized Image", resizedImage);
-	destroyWindow("Original Image");
+	string original = "Original Image";
+	string resized = "Resized Image";
+
+	namedWindow(original, WINDOW_AUTOSIZE);
+	imshow(original, im_source);
+	namedWindow(resized, WINDOW_AUTOSIZE);
+	imshow(resized, resizedImage);
+	destroyWindow(original);
 	waitKey(0);
 	anotherEdit(resizedImage);
 	// destroyWindow("Resized Image");
