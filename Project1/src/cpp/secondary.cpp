@@ -19,7 +19,7 @@ int secondary(Mat image) {
 		cout << "1. Dilation\n2. Erosion\n3. Resizing\n4. Lighten\n5. Darken\n6. Panorama (NOT AN OPTION TO MODIFY)\n7. Canny Edge Detection\n8. Go back to previous menu" << endl;
 		cin >> selection;
 
-		if (!(selection > 0 && selection <= 7)) {
+		if (!(selection > 0 && selection <= 8)) {
 			cout << "You have typed something outside of range, please try again.";
 			break;
 		}
@@ -57,8 +57,8 @@ int secondary(Mat image) {
 		default:
 			break;
 		}
-		destroyAllWindows();
 	}
+	destroyAllWindows();
 	return 0;
 }
 

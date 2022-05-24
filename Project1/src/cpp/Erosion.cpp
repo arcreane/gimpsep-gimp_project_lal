@@ -49,14 +49,14 @@ void erosion::doit(int max_elem, int max_kernel_size, Mat image)
     imshow(windowName2, im_source);
     moveWindow(windowName2, 0, 0);
 
-    ////The first trackbar "Element" returns erosion_elem
-    //createTrackbar("Element:\n 0: Rect \n 1: Cross \n 2: Ellipse", windowName2,
-    //    &erosion_elem, max_elem,
-    //    erosion::Erosion, this);
-    //// "Kernel size" return erosion_size for the corresponding operation.
-    //createTrackbar("Kernel size:\n 2n +1", windowName2,
-    //    &erosion_size, max_kernel_size,
-    //    erosion::Erosion, this);
+    //The first trackbar "Element" returns erosion_elem
+    createTrackbar("Element:\n 0: Rect \n 1: Cross \n 2: Ellipse", windowName2,
+        &erosion_elem, max_elem,
+        erosion::Erosion, this);
+    // "Kernel size" return erosion_size for the corresponding operation.
+    createTrackbar("Kernel size:\n 2n +1", windowName2,
+        &erosion_size, max_kernel_size,
+        erosion::Erosion, this);
 }
 
 void erosion::Erosion(int value, void* img)
@@ -102,6 +102,7 @@ void Erode(Mat image) {
     int const max_elem = 2;
     int const max_kernel_size = 21; // taille du noyaux max vaut
     erosion erodeImg;
+    //destroyWindow("Erosion Demo");
     erodeImg.doit(max_elem, max_kernel_size, image);
     waitKey(0);
     anotherEdit(erodeImg.erosion_dst);

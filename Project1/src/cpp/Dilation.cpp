@@ -33,6 +33,8 @@ void dilation::doit(int max_elem, int max_kernel_size, string filename, string w
 
     // Call once dilation and erosion to show the initial image.
     // les zone sombre s'ecralicisse avec la dilatation 
+    dilation_elem = 0;
+    dilation_size = 0;
 }
 
 void dilation::doit(int max_elem, int max_kernel_size, Mat image, string windowname)
