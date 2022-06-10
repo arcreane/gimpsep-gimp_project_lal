@@ -28,12 +28,11 @@ void anotherEdit(cv::Mat& src) {
 	char option;
 	cout << "Would you like to make another edit to the modified image?  Reply y for yes" << endl;
 	cin >> option;
-	if (option == 'y') {
-		destroyAllWindows();
+	if (option == 'y' || option == 'Y') {
 		secondary(src);
 	}
 	else {
 		save(src);
-		destroyAllWindows();
 	}
+	destroyAllWindows();
 }

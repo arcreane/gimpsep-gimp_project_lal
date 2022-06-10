@@ -17,7 +17,7 @@ void dilation::doit(int max_elem, int max_kernel_size, string filename, string w
         cout << "Could not open or find the image!\n" << endl;
         return;
     }
-    namedWindow(windowname, WINDOW_KEEPRATIO);
+    namedWindow(windowname, WINDOW_GUI_EXPANDED);
     imshow(windowname, im_source);
     moveWindow(windowname, 0, 0);
 
@@ -33,8 +33,6 @@ void dilation::doit(int max_elem, int max_kernel_size, string filename, string w
 
     // Call once dilation and erosion to show the initial image.
     // les zone sombre s'ecralicisse avec la dilatation 
-    dilation_elem = 0;
-    dilation_size = 0;
 }
 
 void dilation::doit(int max_elem, int max_kernel_size, Mat image, string windowname)
@@ -46,9 +44,8 @@ void dilation::doit(int max_elem, int max_kernel_size, Mat image, string windown
         cout << "Could not open or find the image!\n" << endl;
         return;
     }
-    namedWindow(windowname, WINDOW_KEEPRATIO);
-    imshow(windowname, im_source);
-    moveWindow(windowname, 0, 0);
+    namedWindow(windowname, WINDOW_GUI_EXPANDED);
+
 
     //use a trackbar to control the size of an image.
     //The first trackbar "Element" returns dilation_elem
@@ -62,6 +59,8 @@ void dilation::doit(int max_elem, int max_kernel_size, Mat image, string windown
 
     // Call once dilation and erosion to show the initial image.
     // les zone sombre s'ecralicisse avec la dilatation 
+    imshow(windowname, im_source);
+    moveWindow(windowname, 0, 0);
 }
 
 
@@ -87,7 +86,7 @@ void dilation::Dilation(int value, void* img)
     /* utiliation de la fct dilate */
     
     dilate(src->im_source, src->dilation_dst, element);
-    imshow("Dilation Demo", src->dilation_dst);
+    imshow("Dilation Demo", GetSquareImage(src->dilation_dst, 500));
 }
 
 void Dilate() {

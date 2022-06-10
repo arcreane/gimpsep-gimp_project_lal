@@ -9,3 +9,4 @@
 using namespace cv;
 
 int secondary(Mat image);
+Mat GetSquareImage(const cv::Mat& img, int target_width);

@@ -43,11 +43,14 @@ void CannyEdgeDetection() {
 
 	edges = detectEdges(srcImage, factor);
 
-	namedWindow("Original Image", WINDOW_AUTOSIZE);
-	imshow("Original Image", srcImage);
+	string cannywindoworiginal = "Original Image Before Canny";
+	string cannywindowedge = "Image After Canny";
 
-	namedWindow("Edge Detection", WINDOW_AUTOSIZE);
-	imshow("Edge Detection", edges);
+	namedWindow(cannywindoworiginal, WINDOW_AUTOSIZE);
+	imshow(cannywindoworiginal, srcImage);
+
+	namedWindow(cannywindowedge, WINDOW_AUTOSIZE);
+	imshow(cannywindowedge, edges);
 
 	waitKey(0);
 	//destroyWindow("Original Image");
@@ -81,13 +84,16 @@ void CannyEdgeDetection(Mat image) {
 
 	edges = detectEdges(image, factor);
 
-	imshow("Original Image", image);
+	string cannywindoworiginal = "Original Image Before Canny";
+	string cannywindowedge = "Image After Canny";
 
-	imshow("Edge Detection", edges);
+	imshow(cannywindoworiginal, image);
+
+	imshow(cannywindowedge, edges);
 
 	waitKey(0);
-	destroyWindow("Original Image");
-	moveWindow("Edge Detection", 0, 0);
+	destroyWindow(cannywindoworiginal);
+	moveWindow(cannywindowedge, 0, 0);
 
 	char option;
 	while (true) {
@@ -97,7 +103,7 @@ void CannyEdgeDetection(Mat image) {
 			cout << "Please enter the detection factor (integer)" << endl;
 			cin >> factor;
 			edges = detectEdges(image, factor);
-			imshow("Edge Detection", edges);
+			imshow(cannywindowedge, edges);
 			waitKey(0);
 		}
 		else {

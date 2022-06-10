@@ -36,13 +36,13 @@
     <ClCompile Include="src\cpp\Resize.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\main2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="save.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\CannyEdge.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\secondary.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\save.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,10 +68,13 @@
     <ClInclude Include="src\h\save.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\h\main2.h">
+    <ClInclude Include="src\h\CannyEdge.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\h\CannyEdge.h">
+    <ClInclude Include="src\h\main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\h\secondary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

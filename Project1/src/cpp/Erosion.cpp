@@ -20,7 +20,7 @@ void erosion::doit(int max_elem, int max_kernel_size, String filename)
     }
 
     string windowName = "Erosion Demo";
-    namedWindow(windowName);
+    namedWindow(windowName, WINDOW_GUI_EXPANDED);
 
     imshow(windowName, im_source);
     moveWindow(windowName, 0, 0);
@@ -47,7 +47,7 @@ void erosion::doit(int max_elem, int max_kernel_size, Mat image)
 
     string windowName = "Erosion Demo";
 
-    namedWindow(windowName, WINDOW_AUTOSIZE);
+    namedWindow(windowName, WINDOW_GUI_EXPANDED);
 
   
     //The first trackbar "Element" returns erosion_elem
@@ -59,7 +59,7 @@ void erosion::doit(int max_elem, int max_kernel_size, Mat image)
         &erosion_size, max_kernel_size,
         erosion::Erosion, this);
 
-    imshow(windowName, im_source);
+    imshow(windowName, GetSquareImage(im_source, 500));
     moveWindow(windowName, 0, 0);
 
 }
@@ -85,7 +85,7 @@ void erosion::Erosion(int value, void* img)
         Point(erosion_size, erosion_size));
 
     erode(src->im_source, src->erosion_dst, element);
-    imshow("Erosion Demo", src->erosion_dst);
+    imshow("Erosion Demo", GetSquareImage(src->erosion_dst, 500));
 
 }
 

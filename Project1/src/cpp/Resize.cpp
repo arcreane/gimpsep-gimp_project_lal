@@ -46,9 +46,9 @@ void resizer() {
 	string original = "Original Image";
 	string resized = "Resized Image";
 
-	namedWindow(original, WINDOW_AUTOSIZE);
+	namedWindow(original);
 	imshow(original, srcImage);
-	namedWindow(resized, WINDOW_AUTOSIZE);
+	namedWindow(resized);
 	imshow(resized, resizedImage);
 	waitKey(0);
 	destroyWindow(original);
